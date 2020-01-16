@@ -14,7 +14,14 @@ fs.readFile(fileName, 'utf-8', (error, data) => {
 });
 
 
+// function createPDF(data){
+//   pdf.create(pdfTemplate(data), {"orientation": "potrait", "border": {"top":"0.5in", "bottom": "0.5in"}}).toFile('result.pdf', (err) => {
+//   });
+// }
+
+
 function createPDF(data){
-  pdf.create(pdfTemplate(data), {"orientation": "potrait", "border": {"top":"0.5in", "bottom": "0.5in"}}).toFile('result.pdf', (err) => {
+  pdf.create(pdfTemplate(data)).toStream(function(err, stream){
+    stream.pipe(process.stdout);
   });
 }

@@ -1,7 +1,7 @@
 module.exports = ({ title, description, project_id, sample_id, payload}) => {
     const today = new Date();
     var testVar = callTestFunction();
-    console.log("description", description);
+    // console.log("description", description);
     const variants = payload.variants;
 
     var variantGenes = [];
@@ -461,16 +461,15 @@ return `
 };
 
 function callTestFunction(){
-  console.log("callTestFunction called");
   return "Hello world"
 }
 
 function drawChart(variant){
-  console.log("variant", variant.zygosityProband)
+  // console.log("variant", variant.zygosityProband)
   var altCountProband = (Number(variant.altCountProband)/variant.depthProband) * 100 ;
   var altCountMother = (Number(variant.altCountMother)/variant.depthMother) * 100 ;
   var altCountFather = (Number(variant.altCountFather)/variant.depthFather) * 100 ;
-  console.log("altCountProband", altCountProband)
+  // console.log("altCountProband", altCountProband)
 
   var probandViz = "";
   if(variant.depthProband!=null){
