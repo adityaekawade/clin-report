@@ -22,6 +22,9 @@ fs.readFile(fileName, 'utf-8', (error, data) => {
 
 function createPDF(data){
   pdf.create(pdfTemplate(data)).toStream(function(err, stream){
+    if(err){
+      console.error(err); 
+    }
     stream.pipe(process.stdout);
   });
 }
