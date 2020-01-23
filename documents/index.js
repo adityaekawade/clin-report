@@ -257,23 +257,22 @@ return `
               ${unknownSignificantVariants.map(function(item){
                 var htmlStr = "";
                 if(typeof item === "object" && item !== null){
-                  htmlStr = "<div class='card'> <div ><div><strong style='padding:20px; font-size:15px' class='pt-5 pb-5'>Gene: "+ item.gene +
-                          "</strong></div></div></div><br><strong> Variant information: </strong> <br><br><table class='table table-bordered table-sm'><tbody><tr><th scope='row'> Location </th><td>" + item.chrom +
+                  htmlStr = "<div class='card'></div><br><strong> Variant information: </strong> <br><br><table class='table table-bordered table-sm'><tbody><tr><th scope='row'> Gene </th><td>" + item.geneName +
                           "</td></tr><tr><th scope='row'> Mode of inheritance </th><td>" + item.inheritance +
-                          "</td></tr><tr><th scope='row'> CSN </th><td>" + item.transcript +
                           "</td></tr><tr><th scope='row'> Consequence </th><td>" + item.consequence +
-                          "</td></tr><tr><th scope='row'> dbSNP ID </th><td>" + item.rsId +
-                          "</td></tr><tr><th scope='row'> Variant type </th><td>" + item.type +
-                          "</td></tr><tr><th scope='row'> Variant quality </th><td>" + item.qual +
-                          "</td></tr><tr><th scope='row'> REVEL </th><td>" + item.REVEL +
-                          "</td></tr><tr><th scope='row'> HGVSc </th><td>" + item.HGVSc +
                           "</td></tr><tr><th scope='row'> HGVSp </th><td>" + item.HGVSp +
+                          "</td></tr><tr><th scope='row'> HGVSc </th><td>" + item.HGVSc +
+                          "</td></tr><tr><th scope='row'> rsId </th><td>" + (item.rsId ===  null ? " Not found " :  "") +
                           "</td></tr><tr><th scope='row'> gnomAD allele frequency </th><td>" + item.afgnomAD +
                           "</td></tr><tr><th scope='row'> ExAC allele frequency </th><td>" + item.afExAC +
+                          "</td></tr><tr><th scope='row'> REVEL </th><td>" + item.REVEL +
                           "</td></tr><tr><th scope='row'> Impact </th><td>" + item.impact +
+                          "</td></tr><tr><th scope='row'> Location </th><td>" + item.chrom + ": " + item.start + "-" + item.end +
+                          "</td></tr><tr><th scope='row'> Variant type </th><td>" + item.type +
+                          "</td></tr><tr><th scope='row'> Variant quality </th><td>" + item.qual +
                           "</td></tr></tbody></table><br> <strong> Notes: </strong>" + (Array.isArray(item.notes) ? " " + item.notes.map(x => {
                             return "<div class='card'> <div class='card-body'> <div><p class='mb-0'>" + x.note + "</p><footer class='blockquote-footer'><i><small>" + x.author + "</small></i></footer></div></div></div>"
-                          }) + " " : " no note is added <br>" ) + "<br> <strong> Variant Summaries: </strong> <br><br>" + item.svg + "<br><hr>"
+                          }) + " " : " No note is added" ) + "<br>"
                 }
                 return  htmlStr
               }).join("")}
@@ -294,23 +293,22 @@ return `
               ${notSignificantVairants.map(function(item){
                 var htmlStr = "";
                 if(typeof item === "object" && item !== null){
-                  htmlStr = "<div class='card'> <div ><div><strong style='padding:20px; font-size:15px' class='pt-5 pb-5'>Gene: "+ item.gene +
-                          "</strong></div></div></div><br><strong> Variant information: </strong> <br><br><table class='table table-bordered table-sm'><tbody><tr><th scope='row'> Location </th><td>" + item.chrom +
+                  htmlStr = "<div class='card'></div><br><strong> Variant information: </strong> <br><br><table class='table table-bordered table-sm'><tbody><tr><th scope='row'> Gene </th><td>" + item.geneName +
                           "</td></tr><tr><th scope='row'> Mode of inheritance </th><td>" + item.inheritance +
-                          "</td></tr><tr><th scope='row'> CSN </th><td>" + item.transcript +
                           "</td></tr><tr><th scope='row'> Consequence </th><td>" + item.consequence +
-                          "</td></tr><tr><th scope='row'> dbSNP ID </th><td>" + item.rsId +
-                          "</td></tr><tr><th scope='row'> Variant type </th><td>" + item.type +
-                          "</td></tr><tr><th scope='row'> Variant quality </th><td>" + item.qual +
-                          "</td></tr><tr><th scope='row'> REVEL </th><td>" + item.REVEL +
-                          "</td></tr><tr><th scope='row'> HGVSc </th><td>" + item.HGVSc +
                           "</td></tr><tr><th scope='row'> HGVSp </th><td>" + item.HGVSp +
+                          "</td></tr><tr><th scope='row'> HGVSc </th><td>" + item.HGVSc +
+                          "</td></tr><tr><th scope='row'> rsId </th><td>" + (item.rsId ===  null ? " Not found " :  "") +
                           "</td></tr><tr><th scope='row'> gnomAD allele frequency </th><td>" + item.afgnomAD +
                           "</td></tr><tr><th scope='row'> ExAC allele frequency </th><td>" + item.afExAC +
+                          "</td></tr><tr><th scope='row'> REVEL </th><td>" + item.REVEL +
                           "</td></tr><tr><th scope='row'> Impact </th><td>" + item.impact +
+                          "</td></tr><tr><th scope='row'> Location </th><td>" + item.chrom + ": " + item.start + "-" + item.end +
+                          "</td></tr><tr><th scope='row'> Variant type </th><td>" + item.type +
+                          "</td></tr><tr><th scope='row'> Variant quality </th><td>" + item.qual +
                           "</td></tr></tbody></table><br> <strong> Notes: </strong>" + (Array.isArray(item.notes) ? " " + item.notes.map(x => {
                             return "<div class='card'> <div class='card-body'> <div><p class='mb-0'>" + x.note + "</p><footer class='blockquote-footer'><i><small>" + x.author + "</small></i></footer></div></div></div>"
-                          }) + " " : " no note is added <br>" ) + "<br><hr>"
+                          }) + " " : " No note is added" ) + "<br>"
                 }
                 return  htmlStr
               }).join("")}
@@ -331,24 +329,22 @@ return `
               ${poorQualityVariants.map(function(item){
                 var htmlStr = "";
                 if(typeof item === "object" && item !== null){
-                  htmlStr = "<div class='card'> <div ><div><strong style='padding:20px; font-size:15px' class='pt-5 pb-5'>Gene: "+ item.gene +
-                          "</strong></div></div></div><br><strong> Variant information: </strong> <br><br><table class='table table-bordered table-sm'><tbody><tr><th scope='row'> Location </th><td>" + item.chrom +
+                  htmlStr = "<div class='card'></div><br><strong> Variant information: </strong> <br><br><table class='table table-bordered table-sm'><tbody><tr><th scope='row'> Gene </th><td>" + item.geneName +
                           "</td></tr><tr><th scope='row'> Mode of inheritance </th><td>" + item.inheritance +
-                          "</td></tr><tr><th scope='row'> CSN </th><td>" + item.transcript +
                           "</td></tr><tr><th scope='row'> Consequence </th><td>" + item.consequence +
-                          "</td></tr><tr><th scope='row'> dbSNP ID </th><td>" + item.rsId +
-                          "</td></tr><tr><th scope='row'> Variant type </th><td>" + item.type +
-                          "</td></tr><tr><th scope='row'> Variant quality </th><td>" + item.qual +
-                          "</td></tr><tr><th scope='row'> REVEL </th><td>" + item.REVEL +
-                          "</td></tr><tr><th scope='row'> HGVSc </th><td>" + item.HGVSc +
                           "</td></tr><tr><th scope='row'> HGVSp </th><td>" + item.HGVSp +
+                          "</td></tr><tr><th scope='row'> HGVSc </th><td>" + item.HGVSc +
+                          "</td></tr><tr><th scope='row'> rsId </th><td>" + (item.rsId ===  null ? " Not found " :  "") +
                           "</td></tr><tr><th scope='row'> gnomAD allele frequency </th><td>" + item.afgnomAD +
                           "</td></tr><tr><th scope='row'> ExAC allele frequency </th><td>" + item.afExAC +
+                          "</td></tr><tr><th scope='row'> REVEL </th><td>" + item.REVEL +
                           "</td></tr><tr><th scope='row'> Impact </th><td>" + item.impact +
-                          "</td></tr><tr><th scope='row'> Impact </th><td>" + (item.impact ===  'low' ? " " +  item.impact + " " :  "") +
+                          "</td></tr><tr><th scope='row'> Location </th><td>" + item.chrom + ": " + item.start + "-" + item.end +
+                          "</td></tr><tr><th scope='row'> Variant type </th><td>" + item.type +
+                          "</td></tr><tr><th scope='row'> Variant quality </th><td>" + item.qual +
                           "</td></tr></tbody></table><br> <strong> Notes: </strong>" + (Array.isArray(item.notes) ? " " + item.notes.map(x => {
                             return "<div class='card'> <div class='card-body'> <div><p class='mb-0'>" + x.note + "</p><footer class='blockquote-footer'><i><small>" + x.author + "</small></i></footer></div></div></div>"
-                          }) + " " : " no note is added <br>" ) + "<br><hr>"
+                          }) + " " : " No note is added" ) + "<br>"
                 }
                 return  htmlStr
               }).join("")}
