@@ -75,38 +75,15 @@ return `
       <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
         <style>
           body{
             font-size:12px;
           }
           .alertText {
-            font-size: 12px;
+            font-size: 15px;
           }
           .alert{
             width: 80%;
-            padding: 0.5rem 1rem;
-          }
-          .alert-danger{
-            background-color: #AC1114;
-            color: white;
-            border-color: #AC1114;
-          }
-          .alert-warning{
-            background-color: #EDAE49;
-            color: white;
-            border-color: #EDAE49;
-          }
-          .alert-secondary{
-            background-color: #ADABAB;
-            color: white;
-            border-color: #ADABAB;
-          }
-          .alert-dark{
-            background-color: #E67373;
-            color: white;
-            border-color: #E67373;
           }
           thead {
             font-weight: 800;
@@ -218,7 +195,7 @@ return `
           <!-- New Significant variants table -->
             ${significantVariants.length > 0 ? "" + `
                     <div class="alert alert-danger" role="alert"  style="width:58%">
-                      <strong class="alertText">Significant </strong>
+                      <strong class="alertText">Significant Variants </strong>
                     </div>
                     <div class="mb-5" style="width:58%">
             ` + "" : `<div class="mb-5" style="width:58%">`  }
@@ -228,7 +205,7 @@ return `
                         "</td></tr><tr><th scope='row'> Consequence </th><td>" + item.consequence +
                         "</td></tr><tr><th scope='row'> HGVSp </th><td>" + item.HGVSp +
                         "</td></tr><tr><th scope='row'> HGVSc </th><td>" + item.HGVSc +
-                        "</td></tr><tr><th scope='row'> rsId </th><td>" + (item.rsId ===  null ? " Not found " :  "") +
+                        "</td></tr><tr><th scope='row'> rsId </th><td>" + item.rsId +
                         "</td></tr><tr><th scope='row'> gnomAD allele frequency </th><td>" + item.afgnomAD +
                         "</td></tr><tr><th scope='row'> ExAC allele frequency </th><td>" + item.afExAC +
                         "</td></tr><tr><th scope='row'> REVEL </th><td>" + item.REVEL +
@@ -236,9 +213,10 @@ return `
                         "</td></tr><tr><th scope='row'> Location </th><td>" + item.chrom + ": " + item.start + "-" + item.end +
                         "</td></tr><tr><th scope='row'> Variant type </th><td>" + item.type +
                         "</td></tr><tr><th scope='row'> Variant quality </th><td>" + item.qual +
+                        "</td></tr><tr><th scope='row'> dbSNP ID </th><td>" + item.rsId +
                         "</td></tr></tbody></table><br> <strong> Notes: </strong>" + (Array.isArray(item.notes) ? " " + item.notes.map(x => {
                           return "<div class='card'> <div class='card-body'> <div><p class='mb-0'>" + x.note + "</p><footer class='blockquote-footer'><i><small>" + x.author + "</small></i></footer></div></div></div>"
-                        }) + " " : " No note is added" ) + "<br>"
+                        }) + " " : " no note is added" ) + "<br> <strong> Variant Summaries: </strong> <br><br>" + item.svg + "<br><hr>"
               }).join("")}
             </div>
 
@@ -250,7 +228,7 @@ return `
           <!-- unknown Significant variants table -->
             ${unknownSignificantVariants.length > 0 ? "" + `
                     <div class="alert alert-warning" role="alert"  style="width:58%">
-                      <strong class="alertText">Unknown Significance </strong>
+                      <strong class="alertText">Unknown Significant Variants </strong>
                     </div>
                     <div class="mb-5" style="width:58%">
             ` + "" : `<div class="mb-5" style="width:58%">`  }
@@ -287,7 +265,7 @@ return `
           <!-- start notSignificantVairants table -->
             ${notSignificantVairants.length > 0 ? "" + `
                     <div class="alert alert-secondary" role="alert"  style="width:58%">
-                      <strong class="alertText">Not Significant </strong>
+                      <strong class="alertText">Not Significant Variants </strong>
                     </div>
                     <div class="mb-5" style="width:58%">
             ` + "" : `<div class="mb-5" style="width:58%">`  }
@@ -323,8 +301,8 @@ return `
 
           <!-- start poorQualityVariants table -->
             ${poorQualityVariants.length > 0 ? "" + `
-                    <div class="alert alert-dark" role="alert"  style="width:58%">
-                      <strong class="alertText">Poor Quality </strong>
+                    <div class="alert alert-primary" role="alert"  style="width:58%">
+                      <strong class="alertText">Poor quality variants </strong>
                     </div>
                     <div class="mb-5" style="width:58%">
             ` + "" : `<div class="mb-5" style="width:58%">`  }
