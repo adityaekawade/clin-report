@@ -239,7 +239,7 @@ return `
                     <div class="mb-5" style="width:58%">
             ` + "" : `<div class="mb-5" style="width:58%">`  }
               ${significantVariants.map(function(item){
-                return  "<br><strong> Variant information: </strong> <br><br><table class='table table-bordered table-sm'><tbody><tr><th scope='row'> Gene </th><td>" + item.geneName +
+                return  "<br><table class='table table-bordered table-sm'><tbody><tr><th scope='row'> Gene </th><td>" + item.geneName +
                         "</td></tr><tr><th scope='row'> Mode of inheritance </th><td>" + item.inheritance +
                         "</td></tr><tr><th scope='row'> Consequence </th><td>" + item.consequence +
                         "</td></tr><tr><th scope='row'> HGVSp </th><td>" + item.HGVSp +
@@ -252,9 +252,9 @@ return `
                         "</td></tr><tr><th scope='row'> Location </th><td>" + item.chrom + ": " + item.start + "-" + item.end +
                         "</td></tr><tr><th scope='row'> Variant type </th><td>" + item.type +
                         "</td></tr><tr><th scope='row'> Variant quality </th><td>" + item.qual +
-                        "</td></tr></tbody></table><br> <strong> Notes: </strong>" + (Array.isArray(item.notes) ? " " + item.notes.map(x => {
+                        "</td></tr></tbody></table><br> " + (Array.isArray(item.notes) ? " <strong> Notes: </strong> " + item.notes.map(x => {
                           return "<div class='card'> <div class='card-body'> <div><p class='mb-0'>" + x.note + "</p><footer class='blockquote-footer'><i><small>" + x.author + "</small></i></footer></div></div></div>"
-                        }) + " " : " No note is added" ) + "<div class='card'></div><br>"
+                        }) + " " : " " ) + "<div class='card'></div><br>"
               }).join("")}
             </div>
 
@@ -280,7 +280,7 @@ return `
               ${unknownSignificantVariants.map(function(item){
                 var htmlStr = "";
                 if(typeof item === "object" && item !== null){
-                  htmlStr = "<br><strong> Variant information: </strong> <br><br><table class='table table-bordered table-sm'><tbody><tr><th scope='row'> Gene </th><td>" + item.geneName +
+                  htmlStr = "<br><table class='table table-bordered table-sm'><tbody><tr><th scope='row'> Gene </th><td>" + item.geneName +
                           "</td></tr><tr><th scope='row'> Mode of inheritance </th><td>" + item.inheritance +
                           "</td></tr><tr><th scope='row'> Consequence </th><td>" + item.consequence +
                           "</td></tr><tr><th scope='row'> HGVSp </th><td>" + item.HGVSp +
@@ -293,9 +293,9 @@ return `
                           "</td></tr><tr><th scope='row'> Location </th><td>" + item.chrom + ": " + item.start + "-" + item.end +
                           "</td></tr><tr><th scope='row'> Variant type </th><td>" + item.type +
                           "</td></tr><tr><th scope='row'> Variant quality </th><td>" + item.qual +
-                          "</td></tr></tbody></table><br> <strong> Notes: </strong>" + (Array.isArray(item.notes) ? " " + item.notes.map(x => {
+                          "</td></tr></tbody></table><br> " + (Array.isArray(item.notes) ? " <strong> Notes: </strong> " + item.notes.map(x => {
                             return "<div class='card'> <div class='card-body'> <div><p class='mb-0'>" + x.note + "</p><footer class='blockquote-footer'><i><small>" + x.author + "</small></i></footer></div></div></div>"
-                          }) + " " : " No note is added" ) + "<div class='card'></div><br>"
+                          }) + " " : " " ) + "<div class='card'></div><br>"
                 }
                 return  htmlStr
               }).join("")}
@@ -322,7 +322,7 @@ return `
               ${notSignificantVairants.map(function(item){
                 var htmlStr = "";
                 if(typeof item === "object" && item !== null){
-                  htmlStr = "<br><strong> Variant information: </strong> <br><br><table class='table table-bordered table-sm'><tbody><tr><th scope='row'> Gene </th><td>" + item.geneName +
+                  htmlStr = "<br><table class='table table-bordered table-sm'><tbody><tr><th scope='row'> Gene </th><td>" + item.geneName +
                           "</td></tr><tr><th scope='row'> Mode of inheritance </th><td>" + item.inheritance +
                           "</td></tr><tr><th scope='row'> Consequence </th><td>" + item.consequence +
                           "</td></tr><tr><th scope='row'> HGVSp </th><td>" + item.HGVSp +
@@ -335,9 +335,9 @@ return `
                           "</td></tr><tr><th scope='row'> Location </th><td>" + item.chrom + ": " + item.start + "-" + item.end +
                           "</td></tr><tr><th scope='row'> Variant type </th><td>" + item.type +
                           "</td></tr><tr><th scope='row'> Variant quality </th><td>" + item.qual +
-                          "</td></tr></tbody></table><br> <strong> Notes: </strong>" + (Array.isArray(item.notes) ? " " + item.notes.map(x => {
+                          "</td></tr></tbody></table><br> " + (Array.isArray(item.notes) ? " <strong> Notes: </strong> " + item.notes.map(x => {
                             return "<div class='card'> <div class='card-body'> <div><p class='mb-0'>" + x.note + "</p><footer class='blockquote-footer'><i><small>" + x.author + "</small></i></footer></div></div></div>"
-                          }) + " " : " No note is added" ) + "<div class='card'></div><br>"
+                          }) + " " : " " ) + "<div class='card'></div><br>"
                 }
                 return  htmlStr
               }).join("")}
@@ -365,7 +365,7 @@ return `
               ${poorQualityVariants.map(function(item){
                 var htmlStr = "";
                 if(typeof item === "object" && item !== null){
-                  htmlStr = "<br><strong> Variant information: </strong> <br><br><table class='table table-bordered table-sm'><tbody><tr><th scope='row'> Gene </th><td>" + item.geneName +
+                  htmlStr = "<br><table class='table table-bordered table-sm'><tbody><tr><th scope='row'> Gene </th><td>" + item.geneName +
                           "</td></tr><tr><th scope='row'> Mode of inheritance </th><td>" + item.inheritance +
                           "</td></tr><tr><th scope='row'> Consequence </th><td>" + item.consequence +
                           "</td></tr><tr><th scope='row'> HGVSp </th><td>" + item.HGVSp +
@@ -378,9 +378,9 @@ return `
                           "</td></tr><tr><th scope='row'> Location </th><td>" + item.chrom + ": " + item.start + "-" + item.end +
                           "</td></tr><tr><th scope='row'> Variant type </th><td>" + item.type +
                           "</td></tr><tr><th scope='row'> Variant quality </th><td>" + item.qual +
-                          "</td></tr></tbody></table><br> <strong> Notes: </strong>" + (Array.isArray(item.notes) ? " " + item.notes.map(x => {
+                          "</td></tr></tbody></table><br> " + (Array.isArray(item.notes) ? " <strong> Notes: </strong> " + item.notes.map(x => {
                             return "<div class='card'> <div class='card-body'> <div><p class='mb-0'>" + x.note + "</p><footer class='blockquote-footer'><i><small>" + x.author + "</small></i></footer></div></div></div>"
-                          }) + " " : " No note is added" ) + "<div class='card'></div><br>"
+                          }) + " " : " " ) + "<div class='card'></div><br>"
                 }
                 return  htmlStr
               }).join("")}
