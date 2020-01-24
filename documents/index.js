@@ -6,7 +6,7 @@ module.exports = ({ title, description, project_id, sample_id, payload}) => {
 
     var variantGenes = [];
     variants.map(x=>{
-      variantGenes.push(x.gene);
+      variantGenes.push(x.geneName);
     })
 
     var significantVariants = [];
@@ -50,6 +50,7 @@ module.exports = ({ title, description, project_id, sample_id, payload}) => {
 
     var gtrConditions = payload.phenotypes[0];
     var phenolyzerPhenotypes = payload.phenotypes[1];
+    var hpoTerms = payload.phenotypes[2];
 
     var gtrFullList = [];
     payload.gtrFullList.map(gene => {
@@ -108,6 +109,11 @@ return `
             color: white;
             border-color: #E67373;
           }
+
+          .heading-icons{
+            margin-top: -3px;
+          }
+
           thead {
             font-weight: 800;
           }
@@ -180,6 +186,10 @@ return `
             text{
             	font-size: 10px
             }
+
+            .break-new-page {
+              page-break-before: always;
+            }
         </style>
       </head>
       <body>
@@ -217,8 +227,14 @@ return `
 
           <!-- New Significant variants table -->
             ${significantVariants.length > 0 ? "" + `
-                    <div class="alert alert-danger" role="alert"  style="width:58%">
-                      <strong class="alertText">Significant </strong>
+                    <div class="alert alert-danger break-new-page" role="alert"  style="width:58%">
+                      <strong class="alertText">
+                      <svg id="verified_user-24px_1_" class="heading-icons" data-name="verified_user-24px (1)" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24">
+                        <path id="Path_1" data-name="Path 1" d="M0,0H24V24H0Z" fill="none"/>
+                        <path id="Path_2" data-name="Path 2" d="M12,1,3,5v6c0,5.55,3.84,10.74,9,12,5.16-1.26,9-6.45,9-12V5ZM10,17,6,13l1.41-1.41L10,14.17l6.59-6.59L18,9Z" fill="#fff"/>
+                      </svg>
+                        Significant
+                      </strong>
                     </div>
                     <div class="mb-5" style="width:58%">
             ` + "" : `<div class="mb-5" style="width:58%">`  }
@@ -249,8 +265,15 @@ return `
 
           <!-- unknown Significant variants table -->
             ${unknownSignificantVariants.length > 0 ? "" + `
-                    <div class="alert alert-warning" role="alert"  style="width:58%">
-                      <strong class="alertText">Unknown Significance </strong>
+                    <div class="alert alert-warning break-new-page" role="alert"  style="width:58%">
+                      <strong class="alertText break-new-page">
+                      <svg id="help-24px" class="heading-icons" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24">
+                        <path id="Path_9" data-name="Path 9" d="M0,0H24V24H0Z" fill="none"/>
+                        <path id="Path_10" data-name="Path 10" d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm1,17H11V17h2Zm2.07-7.75-.9.92A3.4,3.4,0,0,0,13,15H11v-.5a4.025,4.025,0,0,1,1.17-2.83l1.24-1.26A1.955,1.955,0,0,0,14,9a2,2,0,0,0-4,0H8a4,4,0,0,1,8,0A3.182,3.182,0,0,1,15.07,11.25Z" fill="#fff"/>
+                      </svg>
+
+                        Unknown Significance
+                      </strong>
                     </div>
                     <div class="mb-5" style="width:58%">
             ` + "" : `<div class="mb-5" style="width:58%">`  }
@@ -285,8 +308,14 @@ return `
 
           <!-- start notSignificantVairants table -->
             ${notSignificantVairants.length > 0 ? "" + `
-                    <div class="alert alert-secondary" role="alert"  style="width:58%">
-                      <strong class="alertText">Not Significant </strong>
+                    <div class="alert alert-secondary break-new-page" role="alert"  style="width:58%">
+                      <strong class="alertText">
+                      <svg id="thumb_down_alt-24px_1_" class="heading-icons" data-name="thumb_down_alt-24px (1)" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24">
+                        <path id="Path_7" data-name="Path 7" d="M24,24H0V0H24Z" fill="none"/>
+                        <path id="Path_8" data-name="Path 8" d="M22,4H20a1,1,0,0,0-1,1v9a1,1,0,0,0,1,1h2ZM2.17,11.12a1.98,1.98,0,0,0-.17.8V13a2.006,2.006,0,0,0,2,2H9.5l-.92,4.65a1,1,0,0,0,.08.66,4.8,4.8,0,0,0,.88,1.22L10,22l6.41-6.41A2.006,2.006,0,0,0,17,14.17V6.34A2.343,2.343,0,0,0,14.66,4H6.56a2,2,0,0,0-1.72.97L2.17,11.12Z" fill="#fff"/>
+                      </svg>
+                        Not Significant
+                      </strong>
                     </div>
                     <div class="mb-5" style="width:58%">
             ` + "" : `<div class="mb-5" style="width:58%">`  }
@@ -321,8 +350,15 @@ return `
 
           <!-- start poorQualityVariants table -->
             ${poorQualityVariants.length > 0 ? "" + `
-                    <div class="alert alert-dark" role="alert"  style="width:58%">
-                      <strong class="alertText">Poor Quality </strong>
+                    <div class="alert alert-dark break-new-page" role="alert"  style="width:58%">
+                      <strong class="alertText">
+                      <svg id="trending_down-24px" class="heading-icons" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24">
+                        <path id="Path_11" data-name="Path 11" d="M16,18l2.29-2.29-4.88-4.88-4,4L2,7.41,3.41,6l6,6,4-4,6.3,6.29L22,12v6Z" fill="#fff"/>
+                        <path id="Path_12" data-name="Path 12" d="M0,0H24V24H0Z" fill="none"/>
+                      </svg>
+
+                        Poor Quality
+                      </strong>
                     </div>
                     <div class="mb-5" style="width:58%">
             ` + "" : `<div class="mb-5" style="width:58%">`  }
@@ -375,7 +411,7 @@ return `
           <!-- end References/Methodology -->
 
           <!-- start Gene list -->
-          <div class="alert alert-warning mt-5" role="alert" style="width:58%">
+          <div class="alert alert-warning mt-5 break-new-page" role="alert" style="width:58%">
             <strong class="alertText">Genes</strong>
           </div>
           <div class="mb-5" style="width:58%">
@@ -390,10 +426,19 @@ return `
                 <tr>
                   <th scope='row'>
                     <strong> GTR: </strong> <br>
-                    ${gtrConditions}
+                    ${gtrConditions.map((item, i) => {
+                      return "<span>" + item.DiseaseName + " " + (i<gtrConditions.length-1 ? "" : "") + " </span> "
+                    })}
                     <hr>
                     <strong> Phenolyzer: </strong> <br>
-                    ${phenolyzerPhenotypes}
+                    ${phenolyzerPhenotypes.map((item, i) => {
+                      return "<span>" + item.value + " " + (i<phenolyzerPhenotypes.length-1 ? "" : "") + " </span> "
+                    })}
+                    <hr>
+                    <strong> HPO: </strong> <br>
+                    ${hpoTerms.map((item, i) => {
+                      return "<span>" + item.HPO_Data + " " + (i<hpoTerms.length-1 ? "" : "") + " </span> "
+                    })}
                   </th>
                   <td scope='row' style="max-width:200px; word-wrap:break-word;">
                     ${genesReport.map(gene=>{

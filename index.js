@@ -21,9 +21,11 @@ fs.readFile(fileName, 'utf-8', (error, data) => {
 
 
 function createPDF(data){
-  pdf.create(pdfTemplate(data)).toStream(function(err, stream){
+  pdf.create(pdfTemplate(data), {
+    "border": {"top":"0.4in", "bottom": "0.4in"}
+  }).toStream(function(err, stream){
     if(err){
-      console.error(err); 
+      console.error(err);
     }
     stream.pipe(process.stdout);
   });
