@@ -47,10 +47,17 @@ module.exports = ({ title, description, project_id, sample_id, payload}) => {
       }
     })
 
+    var notReviewedVariants = '';
+
+    if(!significantVariants.length && !unknownSignificantVariants.length && !notSignificantVairants.length && !poorQualityVariants.length){
+      notReviewedVariants = "Variants are not currently reviewed. Please review them in the 'Review Variants' step of the clin.iobio workflow "
+    }
+
 
     var gtrConditions = payload.phenotypes[0];
     var phenolyzerPhenotypes = payload.phenotypes[1];
     var hpoTerms = payload.phenotypes[2];
+    var clinicalNotes = payload.phenotypes[3];
 
     var gtrFullList = [];
     payload.gtrFullList.map(gene => {
@@ -108,6 +115,16 @@ return `
             background-color: #E67373;
             color: white;
             border-color: #E67373;
+          }
+          .alert-not-review{
+            background-color: #D3D3D3;
+            color: white;
+            border-color: #D3D3D3;
+          }
+          .alert-clin-navbar{
+            background-color: #153E52;
+            color: white;
+            border-color: #153E52;
           }
 
           .heading-icons{
@@ -223,6 +240,36 @@ return `
           </div>
           <!-- End header  -->
 
+          <!-- Clinical notes -->
+          <div class="alert alert-primary" class="heading-icons" role="alert"  style="width:58%">
+          <strong class="alertText">
+          Inputs
+          </strong>
+          </div>
+          ${clinicalNotes.length > 0 ? "" + `
+            ${clinicalNotes.map(note => {
+              return "<div class='card' style='width:58%'>  <div class='card-body'> <p> " + note.note + " </p> </div></div><br>"
+            }).join('')}
+          ` + "" : `No clinical note is added`  }
+          <!-- end clinical notes -->
+
+          <!-- No reviewed variants -->
+          ${notReviewedVariants.length > 0 ? "" + `
+                  <div class="alert alert-not-review break-new-page" class="heading-icons" role="alert"  style="width:58%">
+                    <strong class="alertText">
+                    <svg id="visibility_off-24px" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24">
+                      <path id="Path_13" data-name="Path 13" d="M0,0H24V24H0ZM0,0H24V24H0ZM0,0H24V24H0ZM0,0H24V24H0Z" fill="none"/>
+                      <path id="Path_14" data-name="Path 14" d="M12,7a5,5,0,0,1,5,5,4.853,4.853,0,0,1-.36,1.83l2.92,2.92A11.817,11.817,0,0,0,22.99,12a11.827,11.827,0,0,0-11-7.5,11.645,11.645,0,0,0-3.98.7l2.16,2.16A4.853,4.853,0,0,1,12,7ZM2,4.27,4.28,6.55l.46.46A11.8,11.8,0,0,0,1,12a11.822,11.822,0,0,0,15.38,6.66l.42.42L19.73,22,21,20.73,3.27,3ZM7.53,9.8l1.55,1.55A2.821,2.821,0,0,0,9,12a3,3,0,0,0,3,3,2.821,2.821,0,0,0,.65-.08l1.55,1.55A4.967,4.967,0,0,1,7.53,9.8Zm4.31-.78,3.15,3.15.02-.16a3,3,0,0,0-3-3Z" fill="#fff"/>
+                    </svg>
+                      Not reviewed
+                    </strong>
+                  </div>
+                  <div class="mb-5" style="width:58%">
+          ` + "" : `<div class="mb-5" style="width:58%"> <center>`  }
+            ${notReviewedVariants}
+            </center></div>
+          <!-- End of No reviewed variants -->
+
 
 
           <!-- New Significant variants table -->
@@ -252,9 +299,9 @@ return `
                         "</td></tr><tr><th scope='row'> Location </th><td>" + item.chrom + ": " + item.start + "-" + item.end +
                         "</td></tr><tr><th scope='row'> Variant type </th><td>" + item.type +
                         "</td></tr><tr><th scope='row'> Variant quality </th><td>" + item.qual +
-                        "</td></tr></tbody></table><br> " + (Array.isArray(item.notes) ? " <strong> Notes: </strong> " + item.notes.map(x => {
+                        "</td></tr></tbody></table><br> " + (Array.isArray(item.notes) ? " <strong><svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'><path d='M3 18h12v-2H3v2zM3 6v2h18V6H3zm0 7h18v-2H3v2z'/><path fill='none' d='M0 0h24v24H0V0z'/></svg> Notes: </strong> " + item.notes.map(x => {
                           return "<div class='card'> <div class='card-body'> <div><p class='mb-0'>" + x.note + "</p><footer class='blockquote-footer'><i><small>" + x.author + "</small></i></footer></div></div></div>"
-                        }) + " " : " " ) + "<div class='card'></div><br>"
+                        }) + " " : " " ) + "<br><div class='card'></div><br>"
               }).join("")}
             </div>
 
@@ -391,27 +438,8 @@ return `
           <br>
 
 
-
-          <!-- start Disclaimers -->
-          <div class="alert alert-primary" role="alert" style="width:58%">
-            <strong class="alertText">Disclaimers</strong>
-          </div>
-          <div class="mb-5" style="width:58%">
-            Genetic testing information has caveats and should not be considered a definitive diagnosis.
-          </div>
-          <!-- end Disclaimers -->
-
-          <!-- start References/Methodology -->
-          <div class="alert alert-primary" role="alert" style="width:58%">
-            <strong class="alertText">References/Methodology</strong>
-          </div>
-          <div class="mb-5" style="width:58%">
-            DNA sequencing was performed in accordance with established Utah Genome Project (UGP) methodologies including sample preparation, sequencing and data analysis.
-          </div>
-          <!-- end References/Methodology -->
-
           <!-- start Gene list -->
-          <div class="alert alert-warning mt-5 break-new-page" role="alert" style="width:58%">
+          <div class="alert alert-clin-navbar mt-5 break-new-page" role="alert" style="width:58%">
             <strong class="alertText">Genes</strong>
           </div>
           <div class="mb-5" style="width:58%">
@@ -460,48 +488,23 @@ return `
           </div>
           <!-- end Gene list -->
 
-          <!-- Start summary -->
+          <!-- start Disclaimers -->
           <div class="alert alert-primary" role="alert" style="width:58%">
-            <h2 style="font-size: 17px">Summary</h2>
+            <strong class="alertText">Disclaimers</strong>
           </div>
-          <div class="row mb-5" style="width:58%; font-size: 12px">
-            <div class="column" >
-              Date of Birth: <strong>04/15/1950</strong>
-              <br>
-              Gender: <strong>Male</strong>
-              <br>
-              Medical Record #: <strong>00123456</strong>
-              <br>
-              Additional Recipients: <strong>John Doe</strong>
-            </div>
-            <div class="column" >
-              Provider: <span style="font-weight: 800 !important">Intermountain Healthcare</span>
-              <br>
-              Physician: <strong>Dr. Jane Smith</strong>
-              <br>
-              Pathologist: <strong>Dr. John Brown</strong>
-            </div>
-            <div class="column" >
-              Specimen ID #: <strong>1234567</strong>
-              <br>
-              Date Collected: <strong>09/09/2016</strong>
-              <br>
-              Specimen Site: <strong></strong>
-              <br>
-              Specimen Grade: <strong></strong>
-            </div>
+          <div class="mb-5" style="width:58%">
+            Genetic testing information has caveats and should not be considered a definitive diagnosis.
           </div>
+          <!-- end Disclaimers -->
 
-          <!-- End Summary -->
-
-          <!-- Start clinical description -->
+          <!-- start References/Methodology -->
           <div class="alert alert-primary" role="alert" style="width:58%">
-            <div class="alertText">Clinical Description</div>
+            <strong class="alertText">References/Methodology</strong>
           </div>
-          <div class="mb-5" style="width:58%; text-align: justify;">
-            According to information provided to ARUP, the patient is a one year old male. He was delivered by cesarean section at 39 weeks and 5 days. At birth he weighed 6 pounds and 1 ounce, and was 17.5 inches long.  He has multiple congenital anomalies including a large occipital encephalocele, tecto-cerebellar dysraphism, posterior plagiocephaly, relative macrocephaly, left-sided facial weakness, unilateral lack of eye closure, optic nerve hypoplasia, prominent nasal bridge and columella, bilateral low-set microtia with ear tags, bilateral mixed hearing loss, Mobitz type II atrioventricular block s/p epicardial pacemaker,  right torticollis, vertebral segmentation defects (C2-3 fusion, abnormal T2-3 and T12), fused right first and second rib and rudimentary left rib, mild scoliosis, long and narrow left thumb, polysplenia, transverse liver and horseshoe kidney.. His weight and height are less than 1st percentile but show normal growth velocity. He was socially smiling at 8 weeks, rolling from front to back at 5 months and babbling since 6 months. He did not fully support his head at nine months. Previous normal diagnostic test results included creatinine, blood urea nitrogen, cytomegalovirus and cytogenomic SNP microarray.  He has one healthy older sister with heterochromia. His father has 2-3 syndactyly and history of porencephalic cyst. His family history also includes a maternal grandfather with unilateral hearing loss at birth, a maternal uncle with macrocephaly, a maternal uncle who died with congenital anomalies and abnormal ears, a maternal great uncle with an unilateral ear anomaly and bilateral hearing loss, a maternal second cousin with an unilateral ear anomaly and hearing loss, a paternal first cousin with congenital heart valve defect requiring surgery, a paternal uncle with sarcoid disease who is 80 percent blind in one eye, another paternal uncle with sarcoidosis and a paternal uncle with cleft palate. His paternal grandmother died with lupus and Crohn’s disease and a paternal great uncle has intellectual disabilities and has been in assisted living since early adulthood.
+          <div class="mb-5" style="width:58%">
+            DNA sequencing was performed in accordance with established Utah Genome Project (UGP) methodologies including sample preparation, sequencing and data analysis.
           </div>
-          <!-- End clinical description -->
+          <!-- end References/Methodology -->
 
 
         </div>
