@@ -92,6 +92,9 @@ return `
           .alertText {
             font-size: 12px;
           }
+          .phenotype-terms{
+            font-weight: 200;
+          }
           .alert{
             width: 80%;
             padding: 0.5rem 1rem;
@@ -452,21 +455,21 @@ return `
               </thead>
               <tbody>
                 <tr>
-                  <th scope='row'>
+                  <th>
                     <strong> GTR: </strong> <br>
                     ${gtrConditions.map((item, i) => {
-                      return "<span>" + item.DiseaseName + " " + (i<gtrConditions.length-1 ? "" : "") + " </span> "
-                    })}
+                      return "<ul><li class='phenotype-terms'>" + item.DiseaseName + " " + (i<gtrConditions.length-1 ? "" : "") + " </li></ul>"
+                    }).join('')}
                     <hr>
                     <strong> Phenolyzer: </strong> <br>
                     ${phenolyzerPhenotypes.map((item, i) => {
-                      return "<span>" + item.value + " " + (i<phenolyzerPhenotypes.length-1 ? "" : "") + " </span> "
-                    })}
+                      return "<ul><li class='phenotype-terms'>" + item.value + " " + (i<phenolyzerPhenotypes.length-1 ? "" : "") + " </li></ul>"
+                    }).join('')}
                     <hr>
                     <strong> HPO: </strong> <br>
                     ${hpoTerms.map((item, i) => {
-                      return "<span>" + item.HPO_Data + " " + (i<hpoTerms.length-1 ? "" : "") + " </span> "
-                    })}
+                      return "<ul><li class='phenotype-terms'>" + item.HPO_Data + " " + (i<hpoTerms.length-1 ? "" : "") + " </li></ul>"
+                    }).join('')}
                   </th>
                   <td scope='row' style="max-width:200px; word-wrap:break-word;">
                     ${genesReport.map(gene=>{
