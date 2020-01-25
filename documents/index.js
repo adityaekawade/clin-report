@@ -243,10 +243,24 @@ return `
           </div>
           <!-- End header  -->
 
+          <div class="alert alert-primary" class="heading-icons" role="alert"  style="width:58%">
+          <strong class="alertText">
+            Clinical description
+          </strong>
+          </div>
+          <div style="width:58%; margin-left:12px">
+          <div>
+            ${description}
+          </div>
+          </div>
+          <br><br>
+
+
+
           <!-- Clinical notes -->
           <div class="alert alert-primary" class="heading-icons" role="alert"  style="width:58%">
           <strong class="alertText">
-          Inputs
+          Clinical note
           </strong>
           </div>
           ${clinicalNotes.length > 0 ? "" + `
@@ -303,7 +317,7 @@ return `
                         "</td></tr><tr><th scope='row'> Variant type </th><td>" + item.type +
                         "</td></tr><tr><th scope='row'> Variant quality </th><td>" + item.qual +
                         "</td></tr></tbody></table><br> " + (Array.isArray(item.notes) ? " <strong><svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'><path d='M3 18h12v-2H3v2zM3 6v2h18V6H3zm0 7h18v-2H3v2z'/><path fill='none' d='M0 0h24v24H0V0z'/></svg> Notes: </strong> " + item.notes.map(x => {
-                          return "<div class='card'> <div class='card-body'> <div><footer class='blockquote-footer'><i><small>" + x.datetime + "      <span style='margin-left:50px'>" + x.author + "</span></small></i></footer><p class='mb-0'>" + x.note + "</p></div></div></div>"
+                          return "<div class='card'> <div class='card-body'> <div><footer class='blockquote-footer'><i><small>" + x.datetime + "<span style='margin-left:50px'>" + x.author + "</span></small></i></footer><p class='mb-0'>" + x.note + "</p></div></div></div>"
                         }) + " " : " " ) + "<br><div class='card'></div><br>"
               }).join("")}
             </div>
