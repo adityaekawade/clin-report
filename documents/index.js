@@ -245,7 +245,7 @@ return `
 
           <div class="alert alert-primary" class="heading-icons" role="alert"  style="width:58%">
           <strong class="alertText">
-            Clinical description
+            Clinical Description
           </strong>
           </div>
           <div style="width:58%; margin-left:12px">
@@ -260,7 +260,7 @@ return `
           <!-- Clinical notes -->
           <div class="alert alert-primary" class="heading-icons" role="alert"  style="width:58%">
           <strong class="alertText">
-          Clinical note
+          Clinical Notes
           </strong>
           </div>
           ${clinicalNotes.length > 0 ? "" + `
@@ -278,7 +278,7 @@ return `
                       <path id="Path_13" data-name="Path 13" d="M0,0H24V24H0ZM0,0H24V24H0ZM0,0H24V24H0ZM0,0H24V24H0Z" fill="none"/>
                       <path id="Path_14" data-name="Path 14" d="M12,7a5,5,0,0,1,5,5,4.853,4.853,0,0,1-.36,1.83l2.92,2.92A11.817,11.817,0,0,0,22.99,12a11.827,11.827,0,0,0-11-7.5,11.645,11.645,0,0,0-3.98.7l2.16,2.16A4.853,4.853,0,0,1,12,7ZM2,4.27,4.28,6.55l.46.46A11.8,11.8,0,0,0,1,12a11.822,11.822,0,0,0,15.38,6.66l.42.42L19.73,22,21,20.73,3.27,3ZM7.53,9.8l1.55,1.55A2.821,2.821,0,0,0,9,12a3,3,0,0,0,3,3,2.821,2.821,0,0,0,.65-.08l1.55,1.55A4.967,4.967,0,0,1,7.53,9.8Zm4.31-.78,3.15,3.15.02-.16a3,3,0,0,0-3-3Z" fill="#fff"/>
                     </svg>
-                      Not reviewed
+                      Not Reviewed
                     </strong>
                   </div>
                   <div class="mb-5" style="width:58%">
@@ -297,7 +297,7 @@ return `
                         <path id="Path_1" data-name="Path 1" d="M0,0H24V24H0Z" fill="none"/>
                         <path id="Path_2" data-name="Path 2" d="M12,1,3,5v6c0,5.55,3.84,10.74,9,12,5.16-1.26,9-6.45,9-12V5ZM10,17,6,13l1.41-1.41L10,14.17l6.59-6.59L18,9Z" fill="#fff"/>
                       </svg>
-                        Significant
+                        Significant Variants
                       </strong>
                     </div>
                     <div class="mb-5" style="width:58%">
@@ -336,7 +336,7 @@ return `
                         <path id="Path_10" data-name="Path 10" d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm1,17H11V17h2Zm2.07-7.75-.9.92A3.4,3.4,0,0,0,13,15H11v-.5a4.025,4.025,0,0,1,1.17-2.83l1.24-1.26A1.955,1.955,0,0,0,14,9a2,2,0,0,0-4,0H8a4,4,0,0,1,8,0A3.182,3.182,0,0,1,15.07,11.25Z" fill="#fff"/>
                       </svg>
 
-                        Unknown Significance
+                        Unknown Significance Variants
                       </strong>
                     </div>
                     <div class="mb-5" style="width:58%">
@@ -378,7 +378,7 @@ return `
                         <path id="Path_7" data-name="Path 7" d="M24,24H0V0H24Z" fill="none"/>
                         <path id="Path_8" data-name="Path 8" d="M22,4H20a1,1,0,0,0-1,1v9a1,1,0,0,0,1,1h2ZM2.17,11.12a1.98,1.98,0,0,0-.17.8V13a2.006,2.006,0,0,0,2,2H9.5l-.92,4.65a1,1,0,0,0,.08.66,4.8,4.8,0,0,0,.88,1.22L10,22l6.41-6.41A2.006,2.006,0,0,0,17,14.17V6.34A2.343,2.343,0,0,0,14.66,4H6.56a2,2,0,0,0-1.72.97L2.17,11.12Z" fill="#fff"/>
                       </svg>
-                        Not Significant
+                        Not Significant Variants
                       </strong>
                     </div>
                     <div class="mb-5" style="width:58%">
@@ -421,7 +421,7 @@ return `
                         <path id="Path_12" data-name="Path 12" d="M0,0H24V24H0Z" fill="none"/>
                       </svg>
 
-                        Poor Quality
+                        Poor Quality Variants
                       </strong>
                     </div>
                     <div class="mb-5" style="width:58%">
@@ -477,7 +477,9 @@ return `
                     <hr>
                     <strong> Phenolyzer: </strong> <br>
                     ${phenolyzerPhenotypes.map((item, i) => {
-                      return "<ul><li class='phenotype-terms'>" + item.value + " " + (i<phenolyzerPhenotypes.length-1 ? "" : "") + " </li></ul>"
+                      var str = item.value
+                      str = str.charAt(0).toUpperCase() + str.slice(1)
+                      return "<ul><li class='phenotype-terms'>" + str + " " + (i<phenolyzerPhenotypes.length-1 ? "" : "") + " </li></ul>"
                     }).join('')}
                     <hr>
                     <strong> HPO: </strong> <br>
@@ -530,6 +532,10 @@ return `
     </html>
     `;
 };
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 function callTestFunction(){
   return "Hello world"
