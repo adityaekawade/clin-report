@@ -244,6 +244,7 @@ return `
           </div>
           <!-- End header  -->
 
+          <!--
           <div class="alert alert-primary" class="heading-icons" role="alert"  style="width:58%">
           <strong class="alertText">
             Case Description
@@ -255,6 +256,7 @@ return `
           </div>
           </div>
           <br><br>
+          -->
 
 
 
@@ -518,12 +520,14 @@ return `
           <!-- end Disclaimers -->
 
           <!-- start References/Methodology -->
+          <!--
           <div class="alert alert-primary" role="alert" style="width:58%">
             <strong class="alertText">References/Methodology</strong>
           </div>
           <div class="mb-5" style="width:58%">
             DNA sequencing was performed in accordance with established Utah Genome Project (UGP) methodologies including sample preparation, sequencing and data analysis.
           </div>
+          -->
           <!-- end References/Methodology -->
 
 
